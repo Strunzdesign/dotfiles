@@ -69,43 +69,12 @@ plugins=(
     common-aliases
     last-working-dir
     wd
-    extract
-    web-search
     git-extras
 )
 
 source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Completion
 autoload -U compinit
@@ -124,15 +93,6 @@ prompt gentoo
 	SAVEHIST=1000 
 	setopt inc_append_history # To save every command before it is executed 
 	setopt share_history # setopt inc_append_history
-
-#Functions
-	# Custom cd
-	c() {
-		cd $1;
-		ls;
-	}
-	
-	alias cd="c"
 
 # Fix for arrow-key searching
 # start typing + [Up-Arrow] - fuzzy find history forward
