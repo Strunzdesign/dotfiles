@@ -109,4 +109,5 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
 fi
 
 # Fix behavior of TAB on "cd .."
-zstyle ':completion:*' special-dirs true
+# zstyle ':completion:*' special-dirs true
+zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
