@@ -83,6 +83,9 @@ compinit
 # Correction
 setopt correctall
 
+# Calculator
+autoload -Uz zcalc
+
 # Prompt
 autoload -U promptinit
 promptinit
