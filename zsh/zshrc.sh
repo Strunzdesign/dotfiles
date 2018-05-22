@@ -80,6 +80,9 @@ source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 autoload -U compinit
 compinit
 
+# Behavior of "rm"
+setopt rmstarsilent
+
 # Correction
 setopt correctall
 
