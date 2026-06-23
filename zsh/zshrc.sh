@@ -8,7 +8,7 @@ export ZSH=$HOME/dotfiles/zsh/plugins/oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -38,7 +38,7 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -52,7 +52,7 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -84,14 +84,18 @@ git-extras
 )
 
 source $ZSH/oh-my-zsh.sh
+unalias "P" 2>/dev/null
 
 # User configuration
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+
 source ~/dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Completion
-autoload -U compinit
-compinit
+#autoload -U compinit
+#compinit
 
 # Behavior of "rm"
 setopt rmstarsilent
@@ -105,13 +109,15 @@ autoload -Uz zcalc
 # Prompt
 autoload -U promptinit
 promptinit
-prompt gentoo
-function prompt_char {
-    if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
-}
-
+#prompt gentoo
+#function prompt_char {
+#    if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
+#}
+#local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+#PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(git_prompt_info)$(prompt_char)%{$reset_color%} '
+#RPS1="${return_code}"
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(git_prompt_info)$(prompt_char)%{$reset_color%} '
+PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(git_prompt_info)%(!.#.%%)%{$reset_color%} '
 RPS1="${return_code}"
 
 # Vars
@@ -137,3 +143,10 @@ fi
 # Fix behavior of TAB on "cd .."
 # zstyle ':completion:*' special-dirs true
 zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
+
+# GPG-Agent für SSH nutzen
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export GPG_TTY=$(tty)
+
+# Den Agenten bei Bedarf starten
+gpgconf --launch gpg-agent >/dev/null 2>&1
