@@ -117,7 +117,7 @@ promptinit
 #PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(git_prompt_info)$(prompt_char)%{$reset_color%} '
 #RPS1="${return_code}"
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(git_prompt_info)%(!.#.%%)%{$reset_color%} '
+PROMPT='%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m %{$fg_bold[blue]%}%(!.%1~.%~) $(git_prompt_info)%(!.#.%%) %{$reset_color%}'
 RPS1="${return_code}"
 
 # Vars
